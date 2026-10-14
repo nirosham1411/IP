@@ -1,0 +1,187 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Header */
+
+header {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+header h1 {
+    margin: 0 0 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 8px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+
+/* Sections */
+
+section {
+    background-color: white;
+    width: 90%;
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 25px;
+    border-radius: 5px;
+}
+
+h2 {
+    color: #2c3e50;
+}
+
+
+/* Hero */
+
+.hero {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.search-box {
+    margin-top: 25px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.search-box input {
+    padding: 10px;
+}
+
+
+/* Rooms */
+
+.room-container {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.room {
+    border: 1px solid #ccc;
+    padding: 15px;
+    width: 23%;
+    min-width: 200px;
+}
+
+.room h3 {
+    margin-top: 0;
+}
+
+
+/* Forms */
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+}
+
+label {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+input,
+select,
+textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+
+/* Buttons */
+
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+
+/* Table */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #eee;
+}
+
+
+/* Admin */
+
+.admin-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.admin-panel button {
+    margin: 0;
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    nav a {
+        display: block;
+        margin: 8px;
+    }
+
+    .room {
+        width: 100%;
+    }
+
+    .search-box {
+        flex-direction: column;
+    }
+
+    .search-box input,
+    .search-box button {
+        width: 100%;
+    }
+
+    table {
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Ticket Booking</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Online Bus Ticket Booking</h1>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#buses">Search Bus</a>
+            <a href="#history">My Bookings</a>
+            <a href="#login">Login</a>
+            <a href="#register">Register</a>
+            <a href="#admin">Admin</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <h2>Travel Smart, Book Online</h2>
+        <p>Safe | Comfortable | Affordable</p>
+
+        <form onsubmit="searchBuses(event)" class="search-form">
+            <input id="from" placeholder="From" required>
+            <input id="to" placeholder="To" required>
+            <input id="date" type="date" required>
+            <button type="submit">Search Buses</button>
+        </form>
+    </section>
+
+    <section id="buses">
+        <h2>Available Buses</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Bus Name</th>
+                    <th>Category</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Departure</th>
+                    <th>Fare</th>
+                    <th>Seats</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="busList">
+                <tr>
+                    <td>National Travels</td>
+                    <td>Volvo</td>
+                    <td>Chennai</td>
+                    <td>Bangalore</td>
+                    <td>06:00 AM</td>
+                    <td>₹800</td>
+                    <td>32</td>
+                    <td><button onclick="selectBus('National Travels')">View Seats</button></td>
+                </tr>
+                <tr>
+                    <td>Green Line</td>
+                    <td>Sleeper Coach</td>
+                    <td>Chennai</td>
+                    <td>Hyderabad</td>
+                    <td>08:00 PM</td>
+                    <td>₹1000</td>
+                    <td>28</td>
+                    <td><button onclick="selectBus('Green Line')">View Seats</button></td>
+                </tr>
+                <tr>
+                    <td>SRS Travels</td>
+                    <td>AC Coach</td>
+                    <td>Chennai</td>
+                    <td>Coimbatore</td>
+                    <td>07:30 AM</td>
+                    <td>₹600</td>
+                    <td>40</td>
+                    <td><button onclick="selectBus('SRS Travels')">View Seats</button></td>
+                </tr>
+                <tr>
+                    <td>KPN Travels</td>
+                    <td>Semi Sleeper</td>
+                    <td>Chennai</td>
+                    <td>Madurai</td>
+                    <td>09:00 PM</td>
+                    <td>₹750</td>
+                    <td>36</td>
+                    <td><button onclick="selectBus('KPN Travels')">View Seats</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <div class="layout">
+
+        <section id="seats">
+            <h2>Seat Selection</h2>
+            <p id="selectedBus">Select a bus to continue.</p>
+            <p><span class="available">■</span> Available
+                <span class="booked">■</span> Booked
+                <span class="chosen">■</span> Selected
+            </p>
+            <div id="seatList" class="seats"></div>
+            <p>Selected Seats: <span id="seatNumbers">None</span></p>
+        </section>
+
+        <section id="passenger">
+            <h2>Passenger Details</h2>
+            <form onsubmit="bookTicket(event)">
+                <label>Name</label>
+                <input id="passengerName" required>
+
+                <label>Age</label>
+                <input id="age" type="number" min="1" required>
+
+                <label>Gender</label>
+                <select id="gender" required>
+                    <option value="">Select Gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                </select>
+
+                <label>Email</label>
+                <input id="passengerEmail" type="email" required>
+
+                <button type="submit">Book Ticket</button>
+            </form>
+        </section>
+
+        <section id="login">
+            <h2>User Login</h2>
+            <form onsubmit="login(event)">
+                <label>Email</label>
+                <input type="email" required>
+                <label>Password</label>
+                <input type="password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p><a href="#register">New user? Register here</a></p>
+            <button onclick="alert('Password reset instructions requested.')">
+                Forgot Password
+            </button>
+            <button onclick="alert('Change password option selected.')">
+                Change Password
+            </button>
+        </section>
+
+    </div>
+
+    <section id="history">
+        <h2>My Booking History</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Booking ID</th>
+                    <th>Bus Name</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Date</th>
+                    <th>Seat</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="bookingHistory">
+                <tr>
+                    <td>BK101</td>
+                    <td>National Travels</td>
+                    <td>Chennai</td>
+                    <td>Bangalore</td>
+                    <td>15-10-2026</td>
+                    <td>3</td>
+                    <td>Confirmed</td>
+                    <td><button onclick="cancelTicket(this)">Cancel</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="register">
+        <h2>User Registration</h2>
+        <form onsubmit="registerUser(event)">
+            <label>Full Name</label>
+            <input required>
+            <label>Email</label>
+            <input type="email" required>
+            <label>Password</label>
+            <input type="password" required>
+            <label>Phone Number</label>
+            <input type="tel" required>
+            <button type="submit">Register</button>
+        </form>
+    </section>
+
+    <section id="comments">
+        <h2>Comments and Reviews</h2>
+        <form onsubmit="postComment(event)">
+            <textarea id="commentText" placeholder="Write your comment about this bus..." required></textarea>
+            <button type="submit">Post Comment</button>
+        </form>
+        <div id="commentList">
+            <p><strong>Ravi:</strong> Good service and comfortable travel.</p>
+            <p><strong>Priya:</strong> Bus was on time. Nice experience!</p>
+        </div>
+    </section>
+
+    <section id="admin">
+        <h2>Admin Panel</h2>
+        <div class="admin-buttons">
+            <button onclick="addBus()">Add Bus</button>
+            <button onclick="updateBus()">Update Bus Information</button>
+            <button onclick="manageCategory()">Manage Bus Category</button>
+            <button onclick="manageUsers()">Manage Users</button>
+            <button onclick="manageNews()">Manage News</button>
+            <button onclick="manageComments()">Manage Comments</button>
+            <button onclick="generateReport()">Generate Report</button>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: support@busbooking.com</p>
+        <p>Phone: +91 98765 43210</p>
+        <p>Address: Chennai, Tamil Nadu</p>
+    </section>
+
+    <section id="information">
+        <h2>About / Information</h2>
+        <details>
+            <summary>About Us</summary>
+            <p>We provide a simple and convenient online bus ticket booking service.</p>
+        </details>
+        <details>
+            <summary>Bus Categories</summary>
+            <p>Volvo, Sleeper Coach, AC Coach and Semi Sleeper.</p>
+        </details>
+        <details>
+            <summary>Customer Service (Q & A)</summary>
+            <p>You can cancel tickets through the My Bookings section.</p>
+        </details>
+        <details>
+            <summary>Travel Guide</summary>
+            <p>Check your boarding point and arrival time before travelling.</p>
+        </details>
+        <details>
+            <summary>Privacy Policy</summary>
+            <p>Personal details are intended for booking and customer support.</p>
+        </details>
+    </section>
+
+    <footer>
+        <p>© 2026 Online Bus Ticket Booking System</p>
+        <p>Internet Programming Lab Experiments</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

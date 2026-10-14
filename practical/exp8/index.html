@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechSavvy | Gadget Store</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#">✦ TechSavvy</a>
+    <nav><a href="#catalog">Explore</a><a href="#orders">My Orders</a><button class="cart-button" id="cartButton">Cart <span id="cartCount">0</span></button></nav>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">TECH FOR YOUR EVERYDAY</p>
+        <h1>Your next upgrade starts right here.</h1>
+        <p>Upgrade your everyday with smarter tech.</p>
+        <a class="primary-link" href="#catalog">Shop gadgets →</a>
+      </div>
+      <div class="hero-art"><div class="art-circle"></div><div class="art-emoji">🎧</div><div class="art-tag">Smart picks. Great value.</div></div>
+    </section>
+    <section class="toolbar" id="catalog">
+      <div><p class="eyebrow">CURATED FOR YOU</p><h2>Popular tech picks</h2></div>
+      <div class="filters">
+        <input id="searchInput" type="search" placeholder="Search products...">
+        <select id="categoryFilter" aria-label="Filter by category"></select>
+        <select id="sortFilter" aria-label="Sort products">
+          <option value="featured">Featured</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option>
+        </select>
+      </div>
+    </section>
+    <section class="product-grid" id="productGrid"></section>
+    <section class="orders" id="orders">
+      <div><p class="eyebrow">YOUR ACTIVITY</p><h2>Your orders</h2><p class="muted">Your selected gadgets and order status at a glance.</p></div>
+      <div class="order-panel" id="orderPanel"><p class="muted">Your bookings and orders will appear here.</p></div>
+    </section>
+  </main>
+  <footer><span>✦ TechSavvy</span><span>Designed for a simpler everyday.</span></footer>
+  <div class="toast" id="toast"></div>
+  <dialog id="checkoutDialog">
+    <form method="dialog" id="checkoutForm">
+      <button class="close-button" type="button" id="closeDialog">×</button>
+      <p class="eyebrow">ALMOST THERE</p><h2>Checkout</h2>
+      <div id="cartItems" class="cart-items"></div>
+      <p class="total-row"><span>Total</span><strong id="cartTotal">₹0</strong></p>
+      <label>Customer name<input id="customerName" required placeholder="Full name"></label>
+      <label>Phone or email<input id="customerContact" required placeholder="Your contact details"></label>
+      <label>Delivery address<input id="customerExtra" required placeholder="Street, area and city"></label>
+      <button class="primary-button" type="submit">Place order</button>
+      <p class="fine-print">Demo only. No real payment or booking is processed.</p>
+    </form>
+  </dialog>
+  <script src="script.js"></script>
+</body>
+</html>

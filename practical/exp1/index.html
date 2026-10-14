@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>College Library</h1>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#books">Books</a>
+            <a href="#login">Login</a>
+            <a href="#history">History</a>
+            <a href="#materials">Materials</a>
+            <a href="#admin">Admin</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Home -->
+    <section id="home" class="hero">
+        <h2>Library Management System</h2>
+        <p>Search books, manage borrowing and access study materials.</p>
+        <a href="#books" class="button">Search Books</a>
+    </section>
+
+    <!-- Book Search -->
+    <section id="books">
+        <h2>Book Catalog</h2>
+
+        <input type="text" id="searchBox" placeholder="Search book by title..." onkeyup="searchBooks()">
+
+        <div id="bookList" class="book-container">
+
+            <div class="book">
+                <h3>Java Programming</h3>
+                <p>Author: Herbert Schildt</p>
+                <p>Available: Yes</p>
+                <button onclick="borrowBook('Java Programming')">
+                    Borrow
+                </button>
+            </div>
+
+            <div class="book">
+                <h3>Database Management System</h3>
+                <p>Author: R. Elmasri</p>
+                <p>Available: Yes</p>
+                <button onclick="borrowBook('Database Management System')">
+                    Borrow
+                </button>
+            </div>
+
+            <div class="book">
+                <h3>Web Development</h3>
+                <p>Author: Jon Duckett</p>
+                <p>Available: No</p>
+                <button disabled>Not Available</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- User Login -->
+    <section id="login">
+        <h2>User Login</h2>
+
+        <form onsubmit="login(event)">
+            <label>Email:</label>
+            <input type="email" id="email" required>
+
+            <label>Password:</label>
+            <input type="password" id="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <p>Don't have an account? <a href="#">Register</a></p>
+    </section>
+
+    <!-- Borrow History -->
+    <section id="history">
+        <h2>My Borrow History</h2>
+
+        <table>
+            <tr>
+                <th>Book</th>
+                <th>Issue Date</th>
+                <th>Expected Return</th>
+            </tr>
+
+            <tr>
+                <td>Java Programming</td>
+                <td>01-10-2026</td>
+                <td>15-10-2026</td>
+            </tr>
+
+            <tr>
+                <td>DBMS</td>
+                <td>20-09-2026</td>
+                <td>04-10-2026</td>
+            </tr>
+        </table>
+
+        <p><strong>Current Fine: ₹20</strong></p>
+    </section>
+
+    <!-- Study Materials -->
+    <section id="materials">
+        <h2>Study Materials</h2>
+
+        <label>Year:</label>
+        <select id="year">
+            <option>1st Year</option>
+            <option>2nd Year</option>
+            <option>3rd Year</option>
+            <option>4th Year</option>
+        </select>
+
+        <label>Semester:</label>
+        <select id="semester">
+            <option>Semester 1</option>
+            <option>Semester 2</option>
+            <option>Semester 3</option>
+            <option>Semester 4</option>
+            <option>Semester 5</option>
+            <option>Semester 6</option>
+            <option>Semester 7</option>
+            <option>Semester 8</option>
+        </select>
+
+        <div class="material">
+            <h3>Data Structures Notes</h3>
+            <p>Year: 2 | Semester: 3</p>
+            <button onclick="downloadMaterial('Data Structures Notes')">
+                Download
+            </button>
+        </div>
+
+        <div class="material">
+            <h3>Database Management Notes</h3>
+            <p>Year: 2 | Semester: 4</p>
+            <button onclick="downloadMaterial('Database Management Notes')">
+                Download
+            </button>
+        </div>
+    </section>
+
+    <!-- Admin -->
+    <section id="admin">
+        <h2>Librarian Admin</h2>
+
+        <div class="admin-options">
+            <button onclick="adminAction('Add Book')">
+                Add Book
+            </button>
+
+            <button onclick="adminAction('Update Book')">
+                Update Book
+            </button>
+
+            <button onclick="adminAction('Delete Book')">
+                Delete Book
+            </button>
+
+            <button onclick="adminAction('Issue Book')">
+                Issue Book
+            </button>
+
+            <button onclick="adminAction('Return Book')">
+                Return Book
+            </button>
+
+            <button onclick="adminAction('Fine Management')">
+                Make Fine
+            </button>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <h2>Contact Library</h2>
+
+        <form onsubmit="contactForm(event)">
+            <label>Name:</label>
+            <input type="text" required>
+
+            <label>Email:</label>
+            <input type="email" required>
+
+            <label>Message:</label>
+            <textarea rows="5" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

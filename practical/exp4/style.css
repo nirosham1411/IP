@@ -1,0 +1,221 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f1f8ed;
+    color: #263b2a;
+}
+
+header {
+    background: #dcebd5;
+    padding: 18px;
+    text-align: center;
+    border-bottom: 1px solid #bdd4b4;
+}
+
+header h1 {
+    margin: 0 0 15px;
+}
+
+nav a {
+    display: inline-block;
+    margin: 7px;
+    color: #244b2d;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+section {
+    background: #ffffff;
+    border: 1px solid #d2e4ca;
+    border-radius: 5px;
+    padding: 16px;
+    margin: 15px auto;
+    width: 94%;
+}
+
+h2 {
+    color: #285536;
+    margin-top: 0;
+}
+
+.hero {
+    background: #e2f0d9;
+    text-align: center;
+    padding: 30px 15px;
+}
+
+.hero h2 {
+    font-size: 30px;
+}
+
+.search-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.search-form input,
+.search-form select {
+    width: 180px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 12px;
+    border: 1px solid #c9d9c2;
+    border-radius: 4px;
+    background: #fff;
+}
+
+button {
+    background: #397348;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 14px;
+    margin: 3px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #285536;
+}
+
+button:disabled {
+    background: #b8b8b8;
+    cursor: not-allowed;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+th,
+td {
+    border: 1px solid #dce8d6;
+    padding: 9px;
+    text-align: center;
+}
+
+th {
+    background: #e8f3e2;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0 10px;
+    width: 94%;
+    margin: auto;
+}
+
+.grid section {
+    width: 100%;
+    margin: 0 0 15px;
+}
+
+.seats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+}
+
+.seat {
+    background: #d9f1d1;
+    color: #24502b;
+    border: 1px solid #8bc67d;
+}
+
+.seat.booked {
+    background: #efb5b5;
+    color: #742626;
+}
+
+.seat.selected {
+    background: #f2dc70;
+    color: #473c08;
+}
+
+.available {
+    color: green;
+}
+
+.booked {
+    color: red;
+}
+
+.chosen {
+    color: #d2a900;
+}
+
+.admin-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7px;
+}
+
+.admin-buttons button {
+    margin: 0;
+}
+
+a {
+    color: #285536;
+}
+
+footer {
+    background: #dcebd5;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+@media (max-width: 850px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .search-form {
+        flex-direction: column;
+    }
+
+    .search-form input,
+    .search-form select,
+    .search-form button {
+        width: 100%;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    nav a {
+        margin: 5px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th,
+    td {
+        padding: 6px;
+    }
+}

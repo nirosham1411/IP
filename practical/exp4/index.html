@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Railway Reservation System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Railway Reservation System</h1>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#trains">Trains</a>
+            <a href="#history">My Bookings</a>
+            <a href="#pnr">PNR Status</a>
+            <a href="#login">Login</a>
+            <a href="#register">Register</a>
+            <a href="#admin">Admin</a>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <h2>Plan Your Journey</h2>
+        <p>Book Train Tickets Easily and Travel Comfortably</p>
+        <form class="search-form" onsubmit="searchTrains(event)">
+            <input id="from" placeholder="Source station" required>
+            <input id="to" placeholder="Destination station" required>
+            <input id="journeyDate" type="date" required>
+            <select id="searchClass">
+                <option value="All">All Classes</option>
+                <option>SL</option>
+                <option>3A</option>
+                <option>2A</option>
+                <option>1A</option>
+            </select>
+            <button type="submit">Search Trains</button>
+        </form>
+    </section>
+
+    <section id="trains">
+        <h2>Available Trains</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Train No</th>
+                        <th>Train Name</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Departure</th>
+                        <th>Arrival</th>
+                        <th>Classes</th>
+                        <th>Seats</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="trainList">
+                    <tr>
+                        <td>12621</td>
+                        <td>Tamil Nadu Express</td>
+                        <td>Chennai</td>
+                        <td>New Delhi</td>
+                        <td>06:00</td>
+                        <td>22:30</td>
+                        <td>SL, 3A, 2A</td>
+                        <td>120</td>
+                        <td><button onclick="selectTrain('12621','Tamil Nadu Express')">View Seats</button></td>
+                    </tr>
+                    <tr>
+                        <td>12345</td>
+                        <td>Howrah Express</td>
+                        <td>Chennai</td>
+                        <td>Howrah</td>
+                        <td>08:15</td>
+                        <td>06:20</td>
+                        <td>SL, 3A, 2A</td>
+                        <td>85</td>
+                        <td><button onclick="selectTrain('12345','Howrah Express')">View Seats</button></td>
+                    </tr>
+                    <tr>
+                        <td>12243</td>
+                        <td>Chennai Central EXP</td>
+                        <td>Chennai</td>
+                        <td>Mumbai</td>
+                        <td>14:00</td>
+                        <td>05:10</td>
+                        <td>SL, 3A, 2A, 1A</td>
+                        <td>64</td>
+                        <td><button onclick="selectTrain('12243','Chennai Central EXP')">View Seats</button></td>
+                    </tr>
+                    <tr>
+                        <td>12633</td>
+                        <td>Kanyakumari Express</td>
+                        <td>Chennai</td>
+                        <td>Kanyakumari</td>
+                        <td>16:20</td>
+                        <td>23:40</td>
+                        <td>SL, 3A, 2A</td>
+                        <td>98</td>
+                        <td><button onclick="selectTrain('12633','Kanyakumari Express')">View Seats</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <div class="grid">
+        <section id="seats">
+            <h2>Seat Selection</h2>
+            <p id="trainSelected">Select a train first.</p>
+            <label>Class</label>
+            <select id="travelClass">
+                <option value="SL">Sleeper (SL)</option>
+                <option value="3A">AC 3 Tier (3A)</option>
+                <option value="2A">AC 2 Tier (2A)</option>
+                <option value="1A">First AC (1A)</option>
+            </select>
+            <p><span class="available">■</span> Available
+                <span class="booked">■</span> Booked
+                <span class="chosen">■</span> Selected
+            </p>
+            <div id="seatList" class="seats"></div>
+            <p>Selected Seats: <span id="selectedSeats">None</span></p>
+        </section>
+
+        <section id="passenger">
+            <h2>Passenger Details</h2>
+            <form onsubmit="savePassenger(event)">
+                <label>Name</label>
+                <input id="passengerName" required>
+                <label>Age</label>
+                <input id="passengerAge" type="number" min="1" max="120" required>
+                <label>Gender</label>
+                <select id="gender" required>
+                    <option value="">Select</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                </select>
+                <label>Email</label>
+                <input id="passengerEmail" type="email" required>
+                <button type="submit">Save Passenger</button>
+            </form>
+        </section>
+
+        <section id="payment">
+            <h2>Payment Details</h2>
+            <p>Total Fare: ₹<span id="fare">0</span></p>
+            <label>Payment Mode</label>
+            <select id="paymentMode">
+                <option>Online Payment</option>
+                <option>Offline Payment</option>
+            </select>
+            <button onclick="makePayment()">Make Payment</button>
+        </section>
+
+        <section id="login">
+            <h2>User Login</h2>
+            <form onsubmit="login(event)">
+                <label>Email</label>
+                <input type="email" required>
+                <label>Password</label>
+                <input type="password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p><a href="#register">New user? Register here</a></p>
+            <button onclick="alert('Password reset requested.')">Forgot Password</button>
+        </section>
+
+        <section id="register">
+            <h2>User Registration</h2>
+            <form onsubmit="registerUser(event)">
+                <label>Full Name</label>
+                <input required>
+                <label>Email</label>
+                <input type="email" required>
+                <label>Password</label>
+                <input type="password" required>
+                <label>Phone Number</label>
+                <input type="tel" required>
+                <button type="submit">Register</button>
+            </form>
+        </section>
+
+        <section id="pnr">
+            <h2>Check PNR Status</h2>
+            <form onsubmit="checkPNR(event)">
+                <label>Enter PNR Number</label>
+                <input id="pnrNumber" placeholder="Enter PNR number" required>
+                <button type="submit">Check Status</button>
+            </form>
+            <p id="pnrResult"></p>
+        </section>
+    </div>
+
+    <section id="history">
+        <h2>My Booking History</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>PNR No</th>
+                        <th>Train Name</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Date</th>
+                        <th>Class</th>
+                        <th>Seats</th>
+                        <th>Fare</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="bookingHistory"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <div class="grid">
+        <section id="cancellation">
+            <h2>Cancellation and Refund</h2>
+            <form onsubmit="cancelTicket(event)">
+                <label>Enter PNR Number</label>
+                <input id="cancelPNR" required>
+                <button type="submit">Cancel Ticket</button>
+            </form>
+            <h3>Refund Rules</h3>
+            <table>
+                <tr>
+                    <th>Days Before Journey</th>
+                    <th>Refund</th>
+                </tr>
+                <tr>
+                    <td>More than 7 days</td>
+                    <td>100%</td>
+                </tr>
+                <tr>
+                    <td>4 - 7 days</td>
+                    <td>50%</td>
+                </tr>
+                <tr>
+                    <td>1 - 3 days</td>
+                    <td>25%</td>
+                </tr>
+                <tr>
+                    <td>Less than 1 day</td>
+                    <td>0%</td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="admin">
+            <h2>Admin Panel</h2>
+            <div class="admin-buttons">
+                <button onclick="addTrain()">Add Train</button>
+                <button onclick="updateTrain()">Update Train</button>
+                <button onclick="manageSchedule()">Manage Schedule</button>
+                <button onclick="manageFare()">Manage Fare</button>
+                <button onclick="manageUsers()">Manage Users</button>
+                <button onclick="updateSeats()">Update Seat Availability</button>
+                <button onclick="processRefund()">Process Refund</button>
+                <button onclick="generateReport()">Generate Report</button>
+            </div>
+        </section>
+    </div>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: support@railwaybooking.com</p>
+        <p>Phone: +91 98765 43210</p>
+        <p>Address: Chennai, Tamil Nadu</p>
+    </section>
+
+    <footer>
+        <p>Railway Reservation System | Internet Programming Lab Experiments</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

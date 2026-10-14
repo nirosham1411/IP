@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Grand Stay Hotel</h1>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#rooms">Rooms</a>
+            <a href="#booking">Book Room</a>
+            <a href="#history">My Bookings</a>
+            <a href="#login">Login</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+
+    <!-- Home -->
+    <section id="home" class="hero">
+
+        <h2>Find Your Perfect Stay</h2>
+
+        <p>
+            Search and book comfortable rooms at affordable prices.
+        </p>
+
+        <div class="search-box">
+
+            <input type="text" id="destination" placeholder="Destination">
+
+            <input type="date" id="checkin">
+
+            <input type="date" id="checkout">
+
+            <input type="number" id="guests" placeholder="Guests" min="1">
+
+            <button onclick="searchHotel()">
+                Search
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- Rooms -->
+    <section id="rooms">
+
+        <h2>Room Types</h2>
+
+        <div class="room-container">
+
+            <div class="room">
+                <h3>Single Room</h3>
+                <p>One bed suitable for one guest.</p>
+                <p>₹1500 / night</p>
+                <p>Amenities: WiFi, TV, AC</p>
+                <p>⭐ 4.2</p>
+
+                <button onclick="selectRoom('Single Room')">
+                    Book Now
+                </button>
+            </div>
+
+
+            <div class="room">
+                <h3>Double Room</h3>
+                <p>Comfortable room for two guests.</p>
+                <p>₹2500 / night</p>
+                <p>Amenities: WiFi, TV, AC, Breakfast</p>
+                <p>⭐ 4.5</p>
+
+                <button onclick="selectRoom('Double Room')">
+                    Book Now
+                </button>
+            </div>
+
+
+            <div class="room">
+                <h3>Deluxe Room</h3>
+                <p>Large room with premium facilities.</p>
+                <p>₹4000 / night</p>
+                <p>Amenities: WiFi, TV, AC, Breakfast</p>
+                <p>⭐ 4.7</p>
+
+                <button onclick="selectRoom('Deluxe Room')">
+                    Book Now
+                </button>
+            </div>
+
+
+            <div class="room">
+                <h3>Suite</h3>
+                <p>Luxury room suitable for families.</p>
+                <p>₹6000 / night</p>
+                <p>Amenities: WiFi, TV, AC, Breakfast, Mini Bar</p>
+                <p>⭐ 4.9</p>
+
+                <button onclick="selectRoom('Suite')">
+                    Book Now
+                </button>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Booking -->
+    <section id="booking">
+
+        <h2>Book a Room</h2>
+
+        <form onsubmit="makeBooking(event)">
+
+            <label>Name:</label>
+            <input type="text" id="name" required>
+
+            <label>Email:</label>
+            <input type="email" id="email" required>
+
+            <label>Room Type:</label>
+
+            <select id="roomType">
+                <option>Single Room</option>
+                <option>Double Room</option>
+                <option>Deluxe Room</option>
+                <option>Suite</option>
+            </select>
+
+            <label>Check-in Date:</label>
+            <input type="date" id="bookingCheckin" required>
+
+            <label>Check-out Date:</label>
+            <input type="date" id="bookingCheckout" required>
+
+            <label>Number of Guests:</label>
+            <input type="number" min="1" required>
+
+            <button type="submit">
+                Check Availability & Book
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- Booking History -->
+    <section id="history">
+
+        <h2>My Booking History</h2>
+
+        <table>
+
+            <tr>
+                <th>Room</th>
+                <th>Check-in</th>
+                <th>Check-out</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+
+            <tr>
+                <td>Deluxe Room</td>
+                <td>20-10-2026</td>
+                <td>23-10-2026</td>
+                <td>Confirmed</td>
+                <td>
+                    <button onclick="changeBooking()">
+                        Modify
+                    </button>
+
+                    <button onclick="cancelBooking()">
+                        Cancel
+                    </button>
+                </td>
+            </tr>
+
+        </table>
+
+    </section>
+
+
+    <!-- Login -->
+    <section id="login">
+
+        <h2>User Login</h2>
+
+        <form onsubmit="login(event)">
+
+            <label>Email:</label>
+            <input type="email" required>
+
+            <label>Password:</label>
+            <input type="password" required>
+
+            <button type="submit">
+                Login
+            </button>
+
+        </form>
+
+        <p>
+            New user?
+            <a href="#register">Register here</a>
+        </p>
+
+    </section>
+
+
+    <!-- Register -->
+    <section id="register">
+
+        <h2>Create Account</h2>
+
+        <form onsubmit="registerUser(event)">
+
+            <label>Name:</label>
+            <input type="text" required>
+
+            <label>Email:</label>
+            <input type="email" required>
+
+            <label>Password:</label>
+            <input type="password" required>
+
+            <label>Phone:</label>
+            <input type="tel" required>
+
+            <button type="submit">
+                Register
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- User Profile -->
+    <section id="profile">
+
+        <h2>My Profile</h2>
+
+        <p><strong>Name:</strong> John User</p>
+        <p><strong>Email:</strong> john@example.com</p>
+        <p><strong>Phone:</strong> 9876543210</p>
+
+        <button onclick="editProfile()">
+            Edit Profile
+        </button>
+
+    </section>
+
+
+    <!-- Payment -->
+    <section id="payment">
+
+        <h2>Payment</h2>
+
+        <form onsubmit="payment(event)">
+
+            <label>Card Number:</label>
+            <input type="text" placeholder="1234 5678 9012 3456">
+
+            <label>Expiry Date:</label>
+            <input type="text" placeholder="MM/YY">
+
+            <label>CVV:</label>
+            <input type="password" maxlength="3">
+
+            <button type="submit">
+                Pay Now
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- Admin -->
+    <section id="admin">
+
+        <h2>Administrator Panel</h2>
+
+        <div class="admin-panel">
+
+            <button onclick="adminAction('Room quantity')">
+                Change Room Quantity
+            </button>
+
+            <button onclick="adminAction('Room price')">
+                Change Room Price
+            </button>
+
+            <button onclick="adminAction('Booking details')">
+                Modify Booking
+            </button>
+
+            <button onclick="adminAction('Cancel booking')">
+                Cancel Booking
+            </button>
+
+            <button onclick="adminAction('Static pages')">
+                Edit Static Pages
+            </button>
+
+            <button onclick="adminAction('User accounts')">
+                Manage Users
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- About -->
+    <section id="about">
+
+        <h2>About Us</h2>
+
+        <p>
+            Grand Stay Hotel provides comfortable and affordable
+            accommodation for business and leisure travelers.
+        </p>
+
+    </section>
+
+
+    <!-- Customer Service -->
+    <section id="faq">
+
+        <h2>Customer Service - FAQ</h2>
+
+        <h3>Can I cancel my booking?</h3>
+        <p>Yes. Bookings can be cancelled up to 3 days before arrival.</p>
+
+        <h3>Can I modify my booking?</h3>
+        <p>Yes. Booking details can be changed up to 3 days before arrival.</p>
+
+        <h3>Is breakfast available?</h3>
+        <p>Breakfast is available for selected room types.</p>
+
+    </section>
+
+
+    <!-- Travel Guide -->
+    <section id="travel">
+
+        <h2>Local Travel Guide</h2>
+
+        <p>
+            Popular nearby places include museums, shopping centers,
+            restaurants and tourist attractions.
+        </p>
+
+        <p>
+            Taxi and local transportation services are available
+            near the hotel.
+        </p>
+
+    </section>
+
+
+    <!-- Contact -->
+    <section id="contact">
+
+        <h2>Contact Us</h2>
+
+        <p>Phone: +91 98765 43210</p>
+        <p>Email: contact@grandstay.com</p>
+        <p>Address: Main Road, Chennai</p>
+
+        <form onsubmit="contactForm(event)">
+
+            <label>Your Name:</label>
+            <input type="text" required>
+
+            <label>Email:</label>
+            <input type="email" required>
+
+            <label>Message:</label>
+            <textarea rows="5" required></textarea>
+
+            <button type="submit">
+                Send Message
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- Privacy -->
+    <section id="privacy">
+
+        <h2>Privacy Policy</h2>
+
+        <p>
+            We respect user privacy and protect personal information
+            provided during registration and booking.
+        </p>
+
+        <p>
+            User information will only be used for hotel services,
+            booking management and customer support.
+        </p>
+
+    </section>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MedCare | Doctor Appointments</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#">✦ MedCare</a>
+    <nav><a href="#catalog">Explore</a><a href="#orders">My Appointments</a><button class="cart-button" id="cartButton">Cart <span id="cartCount">0</span></button></nav>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">CARE THAT COMES TO YOU</p>
+        <h1>Your health deserves an easier appointment.</h1>
+        <p>Find care that fits your schedule.</p>
+        <a class="primary-link" href="#catalog">Find a doctor →</a>
+      </div>
+      <div class="hero-art"><div class="art-circle"></div><div class="art-emoji">🩺</div><div class="art-tag">Care starts with a visit</div></div>
+    </section>
+    <section class="toolbar" id="catalog">
+      <div><p class="eyebrow">CURATED FOR YOU</p><h2>Find your specialist</h2></div>
+      <div class="filters">
+        <input id="searchInput" type="search" placeholder="Search doctors...">
+        <select id="categoryFilter" aria-label="Filter by category"></select>
+        <select id="sortFilter" aria-label="Sort products">
+          <option value="featured">Featured</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option>
+        </select>
+      </div>
+    </section>
+    <section class="product-grid" id="productGrid"></section>
+    <section class="orders" id="orders">
+      <div><p class="eyebrow">YOUR ACTIVITY</p><h2>Appointment requests</h2><p class="muted">Choose a doctor and request a convenient time.</p></div>
+      <div class="order-panel" id="orderPanel"><p class="muted">Your bookings and orders will appear here.</p></div>
+    </section>
+  </main>
+  <footer><span>✦ MedCare</span><span>Designed for a simpler everyday.</span></footer>
+  <div class="toast" id="toast"></div>
+  <dialog id="checkoutDialog">
+    <form method="dialog" id="checkoutForm">
+      <button class="close-button" type="button" id="closeDialog">×</button>
+      <p class="eyebrow">ALMOST THERE</p><h2>Request a consultation</h2>
+      <div id="cartItems" class="cart-items"></div>
+      <p class="total-row"><span>Total</span><strong id="cartTotal">₹0</strong></p>
+      <label>Patient name<input id="customerName" required placeholder="Full name"></label>
+      <label>Phone number<input id="customerContact" required placeholder="Mobile number"></label>
+      <label>Preferred date<input id="customerExtra" required placeholder="e.g. 20 Oct 2026"></label>
+      <button class="primary-button" type="submit">Request appointment</button>
+      <p class="fine-print">Demo only. No real payment or booking is processed.</p>
+    </form>
+  </dialog>
+  <script src="script.js"></script>
+</body>
+</html>
